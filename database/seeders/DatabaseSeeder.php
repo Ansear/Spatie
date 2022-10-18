@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
         $super_admin = Role::create(['name' => 'super-admin']);
         $super_admin->givePermissionTo('ingresa');
 
+
+
         $customer = Role::create(['name' => 'customer']);
         $customer->givePermissionTo('envia');
         // $role->givePermissionTo('edit articles');
@@ -51,8 +53,9 @@ class DatabaseSeeder extends Seeder
             'email'  => 'sebas@gmail.com',
             'password' => bcrypt('12345')
         ]);
-        $user->assignRole('customer');
+        $user->assignRole('super-admin');
         // $role = Role::create(['name' => 'super-admin']);
         // $role->givePermissionTo(Permission::all());
     }
 }
+ 

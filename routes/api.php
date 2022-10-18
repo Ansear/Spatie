@@ -36,9 +36,11 @@ Route::group([
     Route::post('register',[AuthController::class, 'register']);
 });
 
+
+
 Route::group([
     'middleware' => ['auth:api', 'role:super-admin'],
     'prefix' => 'permi'
 ], function(){
-    Route::get('permi',[AuthController::class,'permi']);
+    Route::get('permi',[AuthController::class,'permi']); 
 });

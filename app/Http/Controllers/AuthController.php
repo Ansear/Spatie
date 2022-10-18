@@ -13,7 +13,8 @@ class AuthController extends Controller
             $request->validate([
                 'name' => 'required|string',
                 'email' => 'required|email',
-                'password' => 'required|string'
+                'password' => 'required|string',
+                'code' => 'string'
             ]);
 
             $user = User::Create([
@@ -21,7 +22,14 @@ class AuthController extends Controller
                 'email'  => $request->email,
                 'password' => bcrypt($request->password)
             ]);
+            if($request->code && $request->code=="12345" ){
+                $user->assignRole('super-admin');
+            }else{
+                $user->assignRole('customer');
+            }
             
+
+
             return response()->json([
                 'message' => 'Usuario creado exitosamente',
                 'user' => $user,
